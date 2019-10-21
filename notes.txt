@@ -1,0 +1,12 @@
+javascript -> nodejs -> v8 / libuv
+
+# v8 - engine to run js outside of browser ( by google ) ( translates js for C++ )
+# libuv - c++ project to give the node js excess to operative system, file system, network, concurrency
+
+# Connect js and C++ => process.binding()
+
+# When use ex node crypto module - it uses / references to C++ crypto function
+
+# Process - instance of a program running on pc
+# within single process we can have multiply thinks called Threads ( instructions tfor the cpu one by one)
+# scheduling - which process to proces in one time
