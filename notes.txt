@@ -10,3 +10,5 @@ javascript -> nodejs -> v8 / libuv
 # Process - instance of a program running on pc
 # within single process we can have multiply thinks called Threads ( instructions tfor the cpu one by one)
 # scheduling - which process to proces in one time
+
+# one tick - one iteration while loop
