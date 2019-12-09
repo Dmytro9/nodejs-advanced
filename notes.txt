@@ -8,7 +8,21 @@ javascript -> nodejs -> v8 / libuv
 # When use ex node crypto module - it uses / references to C++ crypto function
 
 # Process - instance of a program running on pc
-# within single process we can have multiply thinks called Threads ( instructions tfor the cpu one by one)
-# scheduling - which process to proces in one time
+# within single process we can have multiply things called Threads ( instructions for the cpu one by one)
+# scheduling - which process to process in one time
 
-# one tick - one iteration while loop
+# one tick - one iteration of while loop
+
+# Node is singlethreated ??, but a lot of functions we write are executed outside of our thread 
+# Node event loop is singlethreated
+# Expensive operation C++ side and libuv executes outside the event loop, and use thread pool
+# Thread pool is the series of 4 threads that can be used for running intensive tasks (expensive calculations - 'fs' module functions; some crypto stuff)
+
+
+# Async operations - requests.. are reflected pendingOSTasks array 
+
+# Threadpool ( has 4 threads avalible )
+FS Module
+
+# OS
+HTTPS
