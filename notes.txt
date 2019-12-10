@@ -26,3 +26,12 @@ FS Module
 
 # OS
 HTTPS
+
+# Nodemon not good works with clustering
+
+# Cluster
+init index app -> init master -> fork master thread ( init index app *again* but in child mode )
+
+
+# Apache request banxhmark (MacOS, Linux)
+ab -c 50 -n 500 localhost:3000/fast  # (make 5000 requests with 50 req concarency)
