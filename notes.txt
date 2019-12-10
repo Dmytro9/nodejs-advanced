@@ -16,7 +16,8 @@ javascript -> nodejs -> v8 / libuv
 # Node is singlethreated ??, but a lot of functions we write are executed outside of our thread 
 # Node event loop is singlethreated
 # Expensive operation C++ side and libuv executes outside the event loop, and use thread pool
-# Thread pool is the series of 4 threads that can be used for running intensive tasks (expensive calculations - 'fs' module functions; some crypto stuff)
+# Thread pool is the series of 4 threads that can be used for running intensive tasks (expensive calculations - 'fs' module functions; some crypto stuff),
+# for achieving concurrency of execution in a computer program
 
 
 # Async operations - requests.. are reflected pendingOSTasks array 
@@ -31,7 +32,26 @@ HTTPS
 
 # Cluster
 init index app -> init master -> fork master thread ( init index app *again* but in child mode )
+( run os.cpus().length times as just fork 1 time will run 1 instance like normal process )
+# clustering is not good if we run to many children process (instances of our server), so use as much as you have cores on your maschine CPU 
 
 
 # Apache request banxhmark (MacOS, Linux)
 ab -c 50 -n 500 localhost:3000/fast  # (make 5000 requests with 50 req concarency)
+
+
+# Run pm2
+pm2 start index -i 0
+# pm2 list (summary what is going on)
+# pm2 show <index>
+# pm2 monit
+# pm2 delete <index>
+
+ ## Node Performance ## 
+# Cluster Mode - recommended
+# Worker Threads - experimental
+
+
+# Worker Thread
+postMessage   onmessage
+onmessage     postMessage 

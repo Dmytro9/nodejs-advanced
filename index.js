@@ -1,30 +1,31 @@
-const cluster = require("cluster");
+const express = require("express");
+const app = express();
+const Worker = require("webworker-threads").Worker;
 
+app.get("/", (req, res) => {
+  const worker = new Worker(function() {
+    this.onmessage = function() {
+      let counter = 0;
 
-if (cluster.isMaster) {
-  cluster.fork();
-//   cluster.fork();
-//   cluster.fork();
-//   cluster.fork();
-} else {
-  const express = require("express");
-  const app = express();
+      while (counter < 1e9) {
+        counter++;
+      }
 
-  function doWork(duration) {
-    const start = Date.now();
-    while (Date.now() - start < duration) {}
-  }
-
-  app.get("/", (req, res) => {
-    doWork(5000);
-    res.send("Hi there");
+      postMessage();
+    };
   });
 
-  app.get("/fast", (req, res) => {
-    res.send("This was fast!");
-  });
+  worker.onmessage = function(myCounter) {
+    console.log(myCounter);
+  };
 
-  app.listen(3000, () => {
-    console.log("Listening to 3000 port");
-  });
-}
+  worker.postMessage();
+});
+
+app.get("/fast", (req, res) => {
+  res.send("This was fast!");
+});
+
+app.listen(3000, () => {
+  console.log("Listening to 3000 port");
+});
