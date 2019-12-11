@@ -56,3 +56,11 @@ pm2 start index1.js -i max
 # Worker Thread
 postMessage   onmessage
 onmessage     postMessage 
+
+
+### Optimization App ###
+# Caching 
+express app -> mongoose -> mongodb
+express app -> mongoose -> cache server (redis) -> mongodb
+
+cache server -> query -> store result of query on cache sever
